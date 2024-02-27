@@ -18,4 +18,8 @@ public class UniversityService {
     public ArrayList<StudentModel> getAllStudentOfUniversityByid(String id){
         return universityDataRepo.getAllStudentOfUniversityByid(id);
     }
+
+    public void addStudent(String id, StudentModel newStudent){
+        universityDataRepo.addStudent(id, newStudent);
+    }
 }

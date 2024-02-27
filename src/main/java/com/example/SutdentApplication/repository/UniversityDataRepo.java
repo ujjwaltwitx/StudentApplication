@@ -18,5 +18,9 @@ public class UniversityDataRepo {
         return universityDataRepo.getOrDefault(id, null);
     }
 
+    public void addStudent(String id, StudentModel newStudent){
+        universityDataRepo.computeIfAbsent(id, k -> new ArrayList<>()).add(newStudent);
+    }
+
 
 }

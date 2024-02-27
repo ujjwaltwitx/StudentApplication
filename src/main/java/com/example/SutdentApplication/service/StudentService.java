@@ -15,30 +15,28 @@ public class StudentService {
     @Autowired
     public StudentDataRepo studentDataRepo;
 
-    public String createStudent(final String employeeName, final String employeeAge) {
+    public StudentModel createStudent(final String employeeName, final String employeeAge) {
         String randomId = UUID.randomUUID().toString();
         StudentModel studentDataModel =  studentDataRepo.createStudent(randomId, employeeName, employeeAge);
-        return studentDataModel.getId();
+        return studentDataModel;
     }
 
     public StudentModel getStudent(final String id) throws BadRequestException {
         StudentModel studentDataModel = studentDataRepo.getStudentById(id);
 
         if(studentDataModel == null) {
-            throw new BadRequestException("Invalid User");
+            throw new BadRequestException("Invalid id");
         }
 
         return studentDataModel;
     }
 
     public void deleteStudent(final String id) throws BadRequestException {
-        // StudentModel studentDataModel = getStudent(id);
         studentDataRepo.deleteStudent(id);
     }
 
     public StudentModel updateStudent(final String id, final String employeeName, final String employeeAge)
             throws BadRequestException {
-        // StudentModel studentDataModel = studentDataRepo.getStudentById(id);
         return studentDataRepo.updateStudent(id, employeeName, employeeAge);
     }
 }
